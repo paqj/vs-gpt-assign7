@@ -15,14 +15,6 @@ import os
 from urllib.parse import urlparse
 
 
-llm = ChatOpenAI(
-    temperature=0.1,
-)
-
-# GPT가 특정 Site를 크롤링하고 그 정보로 알려줌.
-# 1. playwright, chromimum
-# 2. site loader
-
 st.set_page_config(
     page_title="SiteGPT",
     page_icon="🖥️",
@@ -57,14 +49,6 @@ class ChatCallbackHandler(BaseCallbackHandler):
     def on_llm_new_token(self, token, *args, **kwargs):
         self.message += token
 
-
-
-# Memory
-memory = ConversationBufferMemory(
-    llm=llm,
-    max_token_limit=50,
-    return_messages=True,
-)
 
 # 임시 디렉토리 경로 사용 예시
 temp_dir = gettempdir()
@@ -245,6 +229,7 @@ with st.sidebar:
             max_token_limit=50,
             return_messages=True,
         )
+
 
 if url:
     if ".xml" not in url:
