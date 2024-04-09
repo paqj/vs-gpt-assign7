@@ -14,9 +14,6 @@ from tempfile import gettempdir
 import os
 from urllib.parse import urlparse
 
-with st.sidebar:
-    user_api_key = st.text_input("Please enter your API key on app page")
-
 llm = ChatOpenAI(
     temperature=0.1,
 )
@@ -233,7 +230,7 @@ def choose_answer(inputs):
 url = None
 
 with st.sidebar:
-    # user_api_key = st.text_input("Please enter your API key on app page")
+    user_api_key = st.text_input("Please enter your API key on app page")
 
     if user_api_key:
         st.session_state['api_key'] = user_api_key
